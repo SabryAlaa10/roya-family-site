@@ -21,7 +21,6 @@ function initScrollAnimations() {
     .from('.hero-copy h1', { y: 26, opacity: 0, duration: 0.5 }, '-=0.25')
     .from('.hero-copy .lead', { y: 16, opacity: 0, duration: 0.4 }, '-=0.3')
     .from('.hstat', { y: 14, opacity: 0, duration: 0.35, stagger: 0.08 }, '-=0.2')
-    .from('.cta-row .btn', { y: 10, opacity: 0, duration: 0.3, stagger: 0.06 }, '-=0.2')
     .from('.emblem-stage', { scale: 0.75, opacity: 0, rotateY: 40, duration: 0.6, ease: 'back.out(1.4)' }, '-=0.55');
 
   const rtl = document.documentElement.dir === 'rtl';

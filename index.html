@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260913-1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260913-3">
 </head>
 <body>
   <nav id="siteNav">
@@ -84,7 +84,7 @@
 
         <div class="cta-row">
           <a href="#members" class="btn primary"><ar>اتعرف على الأعضاء</ar><en>Meet the members</en></a>
-          <a href="#timeline" class="btn ghost"><ar>شوف الإنجازات</ar><en>See achievements</en></a>
+          <a href="#groups" class="btn ghost"><ar>انضم إلينا</ar><en>Join us</en></a>
         </div>
       </div>
 
@@ -93,11 +93,6 @@
           <div class="emblem-ring"></div>
           <div class="emblem-ring r2"></div>
           <div class="emblem-core"><img src="assets/roya-logo.webp" alt="شعار أسرة رؤية" width="270" height="147" loading="eager"></div>
-        </div>
-
-        <div class="hero-side-actions" aria-label="Quick actions">
-          <a href="#groups" class="mini-action primary"><ar>انضم الآن</ar><en>Join now</en></a>
-          <a href="#members" class="mini-action secondary"><ar>الأعضاء</ar><en>Members</en></a>
         </div>
       </div>
     </div>
@@ -202,8 +197,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/data.js?v=20260913-1"></script>
-  <script src="assets/js/main.js?v=20260913-1"></script>
+  <script src="assets/js/data.js?v=20260913-3"></script>
+  <script src="assets/js/main.js?v=20260913-3"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js?v=3.12.5"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js?v=3.12.5"></script>
@@ -218,7 +213,6 @@
         .from(".hero-copy h1", { y:26, opacity:0, duration:.5 }, "-=0.25")
         .from(".hero-copy .lead", { y:16, opacity:0, duration:.4 }, "-=0.3")
         .from(".hstat", { y:14, opacity:0, duration:.35, stagger:.08 }, "-=0.2")
-        .from(".cta-row .btn", { y:10, opacity:0, duration:.3, stagger:.06 }, "-=0.2")
         .from(".emblem-stage", { scale:.75, opacity:0, rotateY:40, duration:.6, ease:"back.out(1.4)" }, "-=0.55");
 
       gsap.utils.toArray("section:not(.hero) .eyebrow").forEach(el=>{
