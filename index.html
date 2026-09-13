@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-lang="ar" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسرة رؤية | Osra Roya</title>
+  <meta name="description" content="أسرة رؤية — أسرة طلابية بكلية الحاسبات والمعلومات، جامعة الصالحية الجديدة. تعلّم حقيقي، تجارب فعلية، وإنجازات في الذكاء الاصطناعي والبرمجة التنافسية.">
+  <meta name="theme-color" content="#1a6b74">
+  <meta property="og:title" content="أسرة رؤية | Osra Roya">
+  <meta property="og:description" content="أسرة طلابية بكلية الحاسبات والمعلومات، جامعة الصالحية جديدة.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/favicon_256.png">
+  <script>
+    (function () {
+      try {
+        const saved = localStorage.getItem('roya-theme');
+        const theme = saved || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_16.png">
+  <link rel="apple-touch-icon" href="assets/favicon_180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <nav id="siteNav">
+    <div class="brand">
+      <img src="assets/roya-logo.webp" alt="روية" width="38" height="38">
+      <span><ar>أسرة رؤية</ar><en>Osra Roya</en></span>
+    </div>
+
+    <div class="navlinks" id="navLinks">
+      <a href="#about" onclick="closeNav()"><ar>عن الأسرة</ar><en>About</en></a>
+      <a href="#members" onclick="closeNav()"><ar>الأعضاء</ar><en>Members</en></a>
+      <a href="#timeline" onclick="closeNav()"><ar>الإنجازات</ar><en>Achievements</en></a>
+      <a href="#groups" onclick="closeNav()"><ar>الجروبات</ar><en>Groups</en></a>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div class="lang-switch">
+        <button class="ar-btn" onclick="setLang('ar')">عربي</button>
+        <button class="en-btn" onclick="setLang('en')">EN</button>
+      </div>
+
+      <button id="themeToggle" onclick="toggleTheme()" title="Dark mode" aria-label="Toggle dark mode" style="width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--ink); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+        </svg>
+      </button>
+
+      <button class="nav-burger" id="navBurger" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <g stroke="rgba(26,107,116,.14)" stroke-width="1.2" fill="none">
+          <path d="M0 600 C 220 540, 340 680, 560 600 S 900 470, 1200 530"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="ln"></span><ar>كلية الحاسبات والمعلومات · جامعة الصالحية الجديدة</ar><en>Faculty of Computers &amp; Information · SGU</en></div>
+        <h1><ar>أسرة <span>رؤية</span></ar><en>Osra <span>Roya</span></en></h1>
+        <p class="lead"><ar>مساحة أخوية طلابية بتجمع طلاب الكلية على هدف واحد: تعلّم حقيقي، تجارب فعلية، وإنجازات نفتخر بيها مع بعض.</ar><en>A student family bringing together faculty students around one goal: real learning, real experience, and achievements we're proud of together.</en></p>
+
+        <div class="hero-stats">
+          <div class="hstat"><b class="num" id="memberCount">1</b><span><ar>أعضاء الأسرة</ar><en>Family members</en></span></div>
+          <div class="hstat"><b class="num">1</b><span><ar>مركز أول ECPC</ar><en>ECPC 1st place</en></span></div>
+          <div class="hstat"><b class="num" id="eventCount">7</b><span><ar>إيفنتات تقنية بنحضرها</ar><en>Tech events attended</en></span></div>
+        </div>
+
+        <div class="cta-row">
+          <a href="#members" class="btn primary"><ar>اتعرف على الأعضاء</ar><en>Meet the members</en></a>
+          <a href="#timeline" class="btn ghost"><ar>شوف الإنجازات</ar><en>See achievements</en></a>
+        </div>
+      </div>
+
+      <div class="hero-emblem">
+        <div class="emblem-stage" id="emblemStage">
+          <div class="emblem-ring"></div>
+          <div class="emblem-ring r2"></div>
+          <div class="emblem-core"><img src="assets/roya-logo.webp" alt="شعار أسرة رؤية" width="270" height="147" loading="eager"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-txt">
+        <div class="eyebrow"><span class="ln"></span><ar>مين إحنا</ar><en>Who we are</en></div>
+        <h2 class="head"><ar>جزء من كلية الحاسبات والمعلومات<br>بجامعة الصالحية الجديدة</ar><en>Part of the Faculty of Computers &amp; Information<br>at El-Saleheya El-Gadida University</en></h2>
+        <p class="lead"><ar>أسرة رؤية مش مجرد مجموعة، دي بيئة بندعم فيها بعض من أول يوم في الكلية — من التوجيه الأكاديمي، للمسابقات البرمجية، لحضور أهم الإيفنتات التقنية في مصر.</ar><en>Osra Roya isn't just a group — it's an environment where we support each other from day one at the faculty, from academic guidance, to competitive programming, to attending Egypt's key tech events.</en></p>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge-card"><img src="assets/roya-logo.webp" alt="روية" width="52" height="28" loading="lazy" decoding="async"><div><b><ar>أسرة رؤية</ar><en>Osra Roya</en></b><span><ar>الأسرة الطلابية</ar><en>Student family</en></span></div></div>
+        <div class="badge-card"><img src="assets/faculty-logo.webp" alt="الكلية" width="52" height="52" loading="lazy" decoding="async"><div><b><ar>كلية الحاسبات والمعلومات</ar><en>Faculty of Computers &amp; Information</en></b><span><ar>El Saleheya El Gadida University</ar><en>El Saleheya El Gadida University</en></span></div></div>
+        <div class="badge-card"><img src="assets/university-logo.webp" alt="الجامعة" width="52" height="52" loading="lazy" decoding="async"><div><b><ar>جامعة الصالحية الجديدة</ar><en>El Saleheya El Gadida University</en></b><span>GSU</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="members" style="background:var(--surface);">
+    <div class="wrap">
+      <div class="members-head">
+        <div>
+          <div class="eyebrow"><span class="ln"></span><ar>الفريق</ar><en>The team</en></div>
+          <h2 class="head"><ar>أعضاء أسرة رؤية</ar><en>Osra Roya members</en></h2>
+        </div>
+        <p class="lead" style="margin:0;"><ar>باقي الأعضاء بيتضافوا تباعاً — المكان محجوز لهم.</ar><en>More members are being added soon — their spots are reserved.</en></p>
+      </div>
+
+      <div class="members-grid" id="membersGrid"></div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ln"></span><ar>المشوار</ar><en>The journey</en></div>
+      <h2 class="head"><ar>إنجازات وأنشطة الأسرة</ar><en>Family achievements &amp; activities</en></h2>
+      <div class="timeline" id="timelineList"></div>
+    </div>
+  </section>
+
+  <section id="groups" style="background:var(--surface);">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ln"></span><ar>انضم لينا</ar><en>Join us</en></div>
+      <h2 class="head"><ar>جروبات الأسرة على واتساب</ar><en>Osra Roya WhatsApp community</en></h2>
+      <p class="lead"><ar>اختار الرابط الرسمي، اضغط الزر أو امسح الـ QR Code لتدخل المجتمع مباشرة.</ar><en>Use the official invite link, tap the button, or scan the QR code to join the community instantly.</en></p>
+
+      <div class="wa-grid">
+        <div class="wa-card community-card">
+          <div class="community-qr-box" aria-label="QR code for Osra Roya community">
+            <img class="community-qr" src="assets/qr-community.png" alt="QR code for Osra Roya community" loading="eager" decoding="async" fetchpriority="high">
+            <div class="qr-badge"><img src="assets/roya-logo.webp" alt="Osra Roya logo" loading="eager" decoding="async"></div>
+          </div>
+
+          <h4><ar>مجتمع أسرة رؤية</ar><en>Osra Roya Community</en></h4>
+          <p><ar>رابط الانضمام الرسمي، موحد لكل نشاطات الأسرة ومجتمعاتها.</ar><en>The official community link for all Osra Roya activities and groups.</en></p>
+
+          <a class="wa-btn" href="https://chat.whatsapp.com/H4L5agmgZRT2ZTAWPTuGEi" target="_blank" rel="noopener">
+            <ar>انضم لينا</ar><en>Join us</en>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="brand" style="color:#fff;">
+          <img src="assets/roya-logo.webp" alt="روية" width="38" height="21" loading="lazy" decoding="async">
+          <span><ar>أسرة رؤية</ar><en>Osra Roya</en></span>
+        </div>
+
+        <div class="foot-logos">
+          <img src="assets/faculty-logo.webp" alt="الكلية" width="50" height="50" loading="lazy" decoding="async">
+          <img src="assets/university-logo.webp" alt="الجامعة" width="50" height="50" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <div class="foot-bottom">
+        <span><ar>كلية الحاسبات والمعلومات — جامعة الصالحية الجديدة</ar><en>Faculty of Computers &amp; Information — El Saleheya El Gadida University</en></span>
+        <span>admin@sgu.edu.eg · 01557750450</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      console.warn('GSAP/ScrollTrigger failed to load (CDN blocked?) — page still works, just without scroll animations.');
+    } else {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.timeline({ defaults:{ ease:"power2.out" } })
+        .from(".hero-copy .eyebrow", { y:16, opacity:0, duration:.4 })
+        .from(".hero-copy h1", { y:26, opacity:0, duration:.5 }, "-=0.25")
+        .from(".hero-copy .lead", { y:16, opacity:0, duration:.4 }, "-=0.3")
+        .from(".hstat", { y:14, opacity:0, duration:.35, stagger:.08 }, "-=0.2")
+        .from(".cta-row .btn", { y:10, opacity:0, duration:.3, stagger:.06 }, "-=0.2")
+        .from(".emblem-stage", { scale:.75, opacity:0, rotateY:40, duration:.6, ease:"back.out(1.4)" }, "-=0.55");
+
+      gsap.utils.toArray("section:not(.hero) .eyebrow").forEach(el=>{
+        gsap.from(el, { opacity:0, x: document.documentElement.dir==='rtl' ? 20 : -20, duration:.4,
+          scrollTrigger:{ trigger: el, start:"top 92%" } });
+      });
+
+      gsap.utils.toArray("section:not(.hero) h2.head").forEach(el=>{
+        gsap.from(el, { opacity:0, y:22, duration:.45, ease:"power2.out",
+          scrollTrigger:{ trigger: el, start:"top 90%" } });
+      });
+
+      gsap.utils.toArray("section:not(.hero) p.lead").forEach(el=>{
+        gsap.from(el, { opacity:0, y:16, duration:.4, delay:.05,
+          scrollTrigger:{ trigger: el, start:"top 90%" } });
+      });
+
+      gsap.from(".badge-card", {
+        opacity:0, y:18, rotateX:-25, transformOrigin:"top center", duration:.45, stagger:.07, ease:"power2.out",
+        scrollTrigger:{ trigger:".badge-row", start:"top 90%" }
+      });
+
+      ScrollTrigger.batch(".m-card", {
+        start:"top 92%",
+        onEnter: batch => gsap.from(batch, {
+          opacity:0, y:28, rotateY:-15, scale:.95, duration:.45, stagger:.07, ease:"power2.out"
+        })
+      });
+
+      gsap.utils.toArray(".ev-card").forEach((card,i)=>{
+        const fromX = i % 2 === 0 ? -30 : 30;
+        gsap.from(card, {
+          opacity:0, x:fromX, rotateY: i % 2 === 0 ? -5 : 5, duration:.45, ease:"power2.out",
+          scrollTrigger:{ trigger: card, start:"top 94%" }
+        });
+      });
+
+      gsap.from("footer .foot-grid, footer .foot-bottom", {
+        opacity:0, y:16, duration:.45, stagger:.07,
+        scrollTrigger:{ trigger:"footer", start:"top 95%" }
+      });
+
+      gsap.from(".wa-card", {
+        opacity:0, y:24, scale:.96, duration:.4, stagger:.08, ease:"power2.out",
+        scrollTrigger:{ trigger:".wa-grid", start:"top 90%" }
+      });
+
+      const originalSetLang = window.setLang;
+      window.setLang = function(l){
+        originalSetLang(l);
+        requestAnimationFrame(() => ScrollTrigger.refresh());
+      };
+    }
+  </script>
+</body>
+</html>
