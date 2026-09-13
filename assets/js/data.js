@@ -36,6 +36,15 @@ window.royaData = {
         { ar: 'مستعد للمشاركة في الأنشطة والفعاليات', en: 'Ready to participate in activities and events' }
       ]
     },
+    {
+      name: { ar: '', en: 'Tharwat Mahmoud' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      photo: 'assets/0233552c-9d4d-47e6-94e5-d4257ff5106f.jpg',
+      achievements: [
+        { ar: 'عضو جديد داخل الأسرة', en: 'New member of the family' },
+        { ar: 'مستعد للمشاركة في الأنشطة والفعاليات', en: 'Ready to participate in activities and events' }
+      ]
+    },
     { empty: true }
   ],
 
