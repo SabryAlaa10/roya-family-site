@@ -124,7 +124,7 @@ nav.open .nav-burger span::after{transform:translateY(-5px) rotate(-45deg);}
 .btn.ghost{background:var(--surface); color:var(--ink); border-color:var(--line);}
 
 .hero-emblem{
-  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;
+  flex:1; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:22px;
   perspective:1400px; position:relative; z-index:2; min-height:420px;
 }
 .emblem-stage{width:380px; height:380px; position:relative; transform-style:preserve-3d; z-index:1;}
@@ -141,12 +141,13 @@ nav.open .nav-burger span::after{transform:translateY(-5px) rotate(-45deg);}
 .emblem-node{position:absolute; width:10px; height:10px; border-radius:50%; background:var(--mint-400); box-shadow:0 0 16px var(--mint-400);}
 
 .hero-side-actions{
-  position:absolute; inset:0; z-index:3; pointer-events:none;
+  position:relative; z-index:2; display:flex; align-items:center; justify-content:flex-end; gap:12px;
+  width:min(100%, 330px); margin-top:10px; pointer-events:auto;
 }
 
 .mini-action{
-  position:absolute; pointer-events:auto; display:inline-flex; align-items:center; justify-content:center;
-  min-width:145px; min-height:42px; padding:12px 20px; border-radius:999px; font-weight:800; font-size:13px;
+  position:relative; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;
+  min-width:0; min-height:42px; padding:12px 20px; border-radius:999px; font-weight:800; font-size:13px;
   text-align:center; border:1px solid transparent; transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s ease;
   letter-spacing:.02em; line-height:1.2; box-shadow:0 18px 32px rgba(11,29,40,.16);
   backdrop-filter:blur(10px);
@@ -159,12 +160,11 @@ nav.open .nav-burger span::after{transform:translateY(-5px) rotate(-45deg);}
 .mini-action:hover::before{opacity:1;}
 .mini-action:hover{transform:translateY(-5px) scale(1.03);}
 .mini-action.primary{
-  left:50%; bottom:32px; transform:translateX(-50%);
   background:linear-gradient(135deg, var(--teal-600), var(--mint-400));
   color:#fff; animation:pulseGlow 2.6s ease-in-out infinite;
 }
 .mini-action.secondary{
-  right:30px; top:40px; background:rgba(26,107,116,.08); border-color:var(--line); color:var(--ink);
+  background:rgba(26,107,116,.08); border-color:var(--line); color:var(--ink);
 }
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 12px 24px rgba(26,107,116,.18); }
@@ -173,11 +173,8 @@ nav.open .nav-burger span::after{transform:translateY(-5px) rotate(-45deg);}
 
 @media(max-width:900px){
   .hero-grid,.about-grid{flex-direction:column;}
-  .hero-emblem{width:100%; min-height:360px;}
-  .hero-side-actions{position:relative; inset:auto; display:flex; align-items:center; justify-content:center; gap:10px; width:100%; flex-wrap:wrap; padding-top:10px;}
-  .mini-action{position:relative; left:auto; right:auto; top:auto; bottom:auto; transform:none;}
-  .mini-action.primary{transform:none;}
-  .mini-action.secondary{transform:none;}
+  .hero-emblem{width:100%; min-height:360px; align-items:center;}
+  .hero-side-actions{width:min(100%, 280px); gap:10px; margin-top:4px; justify-content:center;}
   section{padding:90px 6vw;}
   .emblem-stage{width:280px; height:280px;}
   .emblem-core{width:200px; height:200px;}
@@ -186,7 +183,7 @@ nav.open .nav-burger span::after{transform:translateY(-5px) rotate(-45deg);}
 @media(max-width:560px){
   .hero-emblem{gap:16px; min-height:320px;}
   .hero-side-actions{width:100%;}
-  .mini-action{flex:1 1 130px; min-width:0; padding:11px 12px; font-size:12px;}
+  .mini-action{padding:11px 12px; font-size:12px;}
 }
 
 .about-grid{display:flex; gap:56px; align-items:center;}
