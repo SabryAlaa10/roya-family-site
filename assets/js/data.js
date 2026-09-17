@@ -33,7 +33,7 @@ window.royaData = {
       photo: 'assets/WhatsApp Image 2026-09-17 at 2.55.44 PM.jpeg',
       achievements: [
         { ar: 'تدربت في NTI', en: 'Trained at NTI' },
-        { ar: 'Leader الدفعه', en: 'Leader of the cohort' }
+        { ar: 'قائد الدفعة', en: 'Leader of the cohort' }
       ]
     },
     {
