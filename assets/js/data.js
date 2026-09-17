@@ -28,6 +28,55 @@ window.royaData = {
       ]
     },
     {
+      name: { ar: '', en: 'Ibrahim ibn Adham' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      photo: 'assets/WhatsApp Image 2026-09-17 at 2.55.44 PM.jpeg',
+      achievements: [
+        { ar: 'تدربت في NTI', en: 'Trained at NTI' },
+        { ar: 'Leader الدفعه', en: 'Leader of the cohort' }
+      ]
+    },
+    {
+      name: { ar: '', en: 'Mohamed Adly' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      photo: 'assets/WhatsApp Image 2026-09-17 at 2.55.30 PM.jpeg',
+      achievements: [
+        { ar: 'تدربت في NTI', en: 'Trained at NTI' },
+        { ar: 'من أوائل الدفعة', en: 'Among the top of the cohort' },
+        { ar: 'مشارك نشط في أنشطة الأسرة', en: 'Active participant in family activities' }
+      ]
+    },
+    {
+      name: { ar: '', en: 'Esraa Eid Saad' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      photo: 'assets/WhatsApp Image 2026-09-17 at 2.38.21 PM.jpeg',
+      achievements: [
+        { ar: 'الأولى على الدفعة وحضرت تدريبات في NTI', en: 'Top of the batch and attended NTI training programs' },
+        { ar: 'متميزة في التعلم والتطوير', en: 'Outstanding in learning and development' },
+        { ar: 'متحمسة للمشاركة في فعاليات الأسرة', en: 'Eager to take part in family activities' }
+      ]
+    },
+    {
+      name: { ar: '', en: 'Hanin Khalid Mahmoud' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      photo: 'assets/WhatsApp Image 2026-09-17 at 2.38.00 PM.jpeg',
+      achievements: [
+        { ar: 'التانية على الدفعة وتقوم بالتدريب في ITI', en: 'Second in the cohort and attended ITI training' },
+        { ar: 'مشاركة فعالة داخل الأسرة', en: 'Active participant within the family' },
+        { ar: 'متحمسة للمشاركة في الأنشطة التقنية', en: 'Eager to participate in technical activities' }
+      ]
+    },
+    {
+      name: { ar: '', en: 'Hanaa Tarek Elsayed' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      photo: '',
+      achievements: [
+        { ar: 'Mobile App Development Training – NTI', en: 'Mobile App Development Training – NTI' },
+        { ar: 'AI Training at The British University in Egypt (BUE)', en: 'AI Training at The British University in Egypt (BUE)' },
+        { ar: 'Innovation & Ideation Training – Creativa', en: 'Innovation & Ideation Training – Creativa' }
+      ]
+    },
+    {
       name: { ar: '', en: 'Yasser Mahmoud' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
       photo: 'assets/58049005-2714-4fa5-a35f-c33115d98e4d.jpg',
@@ -47,6 +96,13 @@ window.royaData = {
     },
     { empty: true }
   ],
+
+  gallery: [
+    'assets/ChatGPT Image Sep 17, 2026, 02_31_13 PM.png',
+    'assets/ChatGPT Image Sep 17, 2026, 02_33_31 PM.png',
+    'assets/ChatGPT Image Sep 17, 2026, 03_07_01 PM.png'
+  ],
+  galleryIntervalMs: 4000,
 
   timeline: [
     {

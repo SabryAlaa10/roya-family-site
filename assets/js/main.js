@@ -1,5 +1,65 @@
 const { members, timeline } = window.royaData;
 
+function renderPhotoRotator() {
+  const gallery = document.getElementById('galleryCarousel');
+  if (!gallery) return;
+
+  const images = (window.royaData.gallery || []).filter((src) => typeof src === 'string' && src.trim());
+
+  if (!images.length) {
+    gallery.innerHTML = `
+      <div class="gallery-empty">
+        <div class="placeholder-box">+</div>
+        <div>
+          <h4><ar>جاهز لاستقبال الصور</ar><en>Ready for your images</en></h4>
+          <p><ar>أرسل الصور وسأضيفها هنا تلقائياً مع التبديل كل 4 ثوانٍ.</ar><en>Send the photos and I’ll add them here automatically with a 4-second rotation.</en></p>
+        </div>
+      </div>`;
+    return;
+  }
+
+  const slides = images.map((src, index) => `
+    <div class="gallery-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
+      <img src="${src}" alt="Gallery image ${index + 1}" loading="eager" decoding="async">
+      <div class="gallery-overlay"></div>
+    </div>
+  `).join('');
+
+  const dots = images.map((_, index) => `
+    <button class="gallery-dot ${index === 0 ? 'active' : ''}" data-index="${index}" aria-label="Show image ${index + 1}"></button>
+  `).join('');
+
+  gallery.innerHTML = `${slides}<div class="gallery-dots">${dots}</div>`;
+
+  let activeIndex = 0;
+  const slidesEls = gallery.querySelectorAll('.gallery-slide');
+  const dotEls = gallery.querySelectorAll('.gallery-dot');
+
+  const showSlide = (nextIndex) => {
+    activeIndex = (nextIndex + slidesEls.length) % slidesEls.length;
+
+    slidesEls.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === activeIndex);
+    });
+
+    dotEls.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeIndex);
+    });
+  };
+
+  dotEls.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      showSlide(Number(dot.dataset.index));
+      clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(() => showSlide(activeIndex + 1), window.royaData.galleryIntervalMs || 4000);
+    });
+  });
+
+  let autoRotateTimer = setInterval(() => {
+    showSlide(activeIndex + 1);
+  }, window.royaData.galleryIntervalMs || 4000);
+}
+
 function renderMembers() {
   const grid = document.getElementById('membersGrid');
   if (!grid) return;
@@ -22,14 +82,23 @@ function renderMembers() {
         </div>`;
     } else {
       const showRoleBadge = member.role.en === 'Family President' || member.role.en === 'Vice President';
+      const hasPhoto = member.photo && member.photo.trim() !== '';
+      const initials = (member.name.en || 'Member')
+        .split(' ')
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() || '')
+        .join('') || 'M';
 
       card.innerHTML = `
         <div class="m-photo">
           ${showRoleBadge ? `<span class="m-role">${member.role.ar} · ${member.role.en}</span>` : ''}
-          <img src="${member.photo}" alt="${member.name.ar}" loading="lazy" decoding="async">
+          ${hasPhoto
+            ? `<img src="${member.photo}" alt="${member.name.ar || member.name.en}" loading="lazy" decoding="async">`
+            : `<div class="m-photo-fallback"><span>${initials}</span></div>`}
         </div>
         <div class="m-body">
-          <h4>${member.name.ar}</h4>
+          <h4>${member.name.ar || member.name.en}</h4>
           <div class="m-name-en">${member.name.en}</div>
           <div class="m-sub"><span>${member.role.ar}</span><span class="m-role-en">· ${member.role.en}</span></div>
           <ul class="m-ach">${member.achievements.map((item) => `<li><ar>${item.ar}</ar><en>${item.en}</en></li>`).join('')}</ul>
@@ -149,6 +218,7 @@ function initTiltEffects() {
 
 function bootRoyaSite() {
   initTheme();
+  renderPhotoRotator();
   renderMembers();
   renderTimeline();
   initTiltEffects();

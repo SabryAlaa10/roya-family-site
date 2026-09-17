@@ -1,0 +1,388 @@
+{
+  "name": "🔥 Central Error Handler — Master (Reusable v1)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 🔥 Central Error Handler — المعمارية المركزية الموحدة\n### أي فشل في أي Workflow رئيسي → يجي هنا أوتوماتيك\n\n**التركيب (مرة واحدة بس):**\n1️⃣ فعّل الـ Workflow ده (Active = ON)\n2️⃣ في كل Workflow رئيسي: افتح Settings ← Error Workflow ← اختار ده\n3️⃣ خلصت — أي خطأ من أي نظام → تنبيه فوري + Log + Fallback\n\n⚠️ قبل التشغيل: ظبّط الـ CONFIG في نود (1) + اربط Telegram و Google Sheets Credentials",
+        "height": 320,
+        "width": 660,
+        "color": 4
+      },
+      "id": "sticky-01",
+      "name": "Sticky — اقرأني أولاً",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-620, -440]
+    },
+    {
+      "parameters": {},
+      "id": "n-01",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [-560, 0]
+    },
+    {
+      "parameters": {
+        "content": "### ⚙️ CONFIG — الجزء الوحيد اللي بيتغير من عميل لعميل\n• system_owner: اسم العميل / النظام\n• alert_chat_id: شات أو قناة التنبيهات\n• fallback_enabled + fallback_webhook_url: الرد البديل للمستخدم النهائي\n\n💡 نفس الملف ده شغال مع 3+ أنظمة عملاء من غير ما نلمس الكود",
+        "height": 180,
+        "width": 320,
+        "color": 5
+      },
+      "id": "sticky-02",
+      "name": "Sticky — CONFIG",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-360, -220]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "system_owner",
+              "value": "عميل العيادات — الكويت (غيّرني لكل عميل)",
+              "type": "string"
+            },
+            {
+              "id": "f2",
+              "name": "workflow_name",
+              "value": "={{ $json.workflow.name }}",
+              "type": "string"
+            },
+            {
+              "id": "f3",
+              "name": "workflow_id",
+              "value": "={{ $json.workflow.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f4",
+              "name": "execution_id",
+              "value": "={{ $json.execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f5",
+              "name": "execution_url",
+              "value": "={{ $json.execution.url }}",
+              "type": "string"
+            },
+            {
+              "id": "f6",
+              "name": "failed_node",
+              "value": "={{ $json.execution.lastNodeExecuted }}",
+              "type": "string"
+            },
+            {
+              "id": "f7",
+              "name": "error_message",
+              "value": "={{ $json.execution.error.message }}",
+              "type": "string"
+            },
+            {
+              "id": "f8",
+              "name": "error_stack",
+              "value": "={{ $json.execution.error.stack }}",
+              "type": "string"
+            },
+            {
+              "id": "f9",
+              "name": "trigger_mode",
+              "value": "={{ $json.execution.mode }}",
+              "type": "string"
+            },
+            {
+              "id": "f10",
+              "name": "timestamp",
+              "value": "={{ $now.setZone('Africa/Cairo').toFormat('yyyy-MM-dd HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "f11",
+              "name": "alert_chat_id",
+              "value": "PUT_TELEGRAM_CHAT_ID_HERE",
+              "type": "string"
+            },
+            {
+              "id": "f12",
+              "name": "fallback_enabled",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "f13",
+              "name": "fallback_webhook_url",
+              "value": "https://your-fallback-endpoint/whatsapp-reply",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "n-02",
+      "name": "1. Extract + CONFIG",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-340, 20]
+    },
+    {
+      "parameters": {
+        "content": "### 🧠 منطق التصنيف\n• CRITICAL: اسم الـ Workflow فيه clinic / chatbot / production (أنظمة عملاء حية)\n• WARNING: أنظمة داخلية وتجارب\n• is_retryable: Timeout / 429 / 5xx = أخطاء مؤقتة → آمنة للـ Retry التلقائي",
+        "height": 180,
+        "width": 320,
+        "color": 3
+      },
+      "id": "sticky-03",
+      "name": "Sticky — منطق التصنيف",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-100, -220]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ===== 🧠 التصنيف + بناء رسالة التنبيه =====\n// كل فشل بيتصنف: CRITICAL (أنظمة عملاء) أو WARNING (داخلي) + بنتحدد لو آمن للـ Retry\nconst item = $input.first().json;\n\n// 1) التصنيف حسب اسم الـ Workflow (أنظمة العملاء الحية = CRITICAL)\nconst CRITICAL_KEYWORDS = ['clinic', 'whatsapp', 'receptionist', 'chatbot', 'rag', 'ecommerce', 'lead', 'client', 'production'];\nconst wfName = String(item.workflow_name || '').toLowerCase();\nconst isCritical = CRITICAL_KEYWORDS.some(k => wfName.includes(k));\n\n// 2) أخطاء مؤقتة معروفة = آمنة للإعادة التلقائية\nconst RETRYABLE_KEYWORDS = ['timeout', 'timed out', 'econnreset', 'econnrefused', 'enotfound', 'socket hang up', 'rate limit', '429', '502', '503', '504'];\nconst errMsg = String(item.error_message || '').toLowerCase();\nconst isRetryable = RETRYABLE_KEYWORDS.some(k => errMsg.includes(k));\n\n// 3) رسالة التنبيه النهائية (هتتبعت لـ Telegram)\nconst icon = isCritical ? '🚨' : '⚠️';\nconst alert_message = [\n  icon + ' ' + (isCritical ? 'CRITICAL — Client System' : 'WARNING — Internal'),\n  '',\n  '👤 System: ' + item.system_owner,\n  '🔀 Workflow: ' + item.workflow_name + ' (ID: ' + item.workflow_id + ')',\n  '🔌 Failed Node: ' + item.failed_node,\n  '💬 Error: ' + item.error_message,\n  '🕐 Time: ' + item.timestamp + ' (Cairo)',\n  '🔁 Auto-Retry Safe: ' + (isRetryable ? 'YES — auto-retry is OK' : 'NO — needs human'),\n  '',\n  '🔍 Inspect: ' + (item.execution_url ? item.execution_url : 'n8n > Executions > ID ' + item.execution_id)\n].join('\\n');\n\nreturn [{ json: { ...item, severity: isCritical ? 'CRITICAL' : 'WARNING', is_critical: isCritical, is_retryable: isRetryable, alert_message } }];"
+      },
+      "id": "n-03",
+      "name": "2. Classify & Format",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-80, 20]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('2. Classify & Format').first().json.alert_chat_id }}",
+        "text": "={{ $('2. Classify & Format').first().json.alert_message }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "n-04",
+      "name": "3. Telegram Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [180, 20]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "PUT_YOUR_GOOGLE_SHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Error Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $('2. Classify & Format').first().json.timestamp }}",
+            "Severity": "={{ $('2. Classify & Format').first().json.severity }}",
+            "System": "={{ $('2. Classify & Format').first().json.system_owner }}",
+            "Workflow": "={{ $('2. Classify & Format').first().json.workflow_name }}",
+            "Failed Node": "={{ $('2. Classify & Format').first().json.failed_node }}",
+            "Error Message": "={{ $('2. Classify & Format').first().json.error_message }}",
+            "Retryable": "={{ $('2. Classify & Format').first().json.is_retryable }}",
+            "Execution URL": "={{ $('2. Classify & Format').first().json.execution_url }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "n-05",
+      "name": "4. Google Sheets Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [440, 20]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $('2. Classify & Format').first().json.fallback_enabled }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "n-06",
+      "name": "5. Fallback Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [680, 20]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('2. Classify & Format').first().json.fallback_webhook_url }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "system",
+              "value": "={{ $('2. Classify & Format').first().json.system_owner }}"
+            },
+            {
+              "name": "failed_workflow",
+              "value": "={{ $('2. Classify & Format').first().json.workflow_name }}"
+            },
+            {
+              "name": "execution_id",
+              "value": "={{ $('2. Classify & Format').first().json.execution_id }}"
+            },
+            {
+              "name": "user_reply",
+              "value": "عذراً، حدث خلل مؤقت في الخدمة. تم إبلاغ الفريق التقني وسيتم الرد عليك في أقرب وقت 🙏"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "n-07",
+      "name": "6a. Fallback Reply",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, -100]
+    },
+    {
+      "parameters": {},
+      "id": "n-08",
+      "name": "6b. Done",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [920, 120]
+    },
+    {
+      "parameters": {
+        "content": "### 💡 الـ Retry التلقائي عايش فين؟\nفي الـ Workflows الرئيسية نفسها:\nافتح النود ← Settings ← Retry On Fail = ON\nMax Tries: 3 | Wait Between Tries: 5000 ms\n\nالـ Handler ده بيرصد + يصنف + يبلّغ — والحقل is_retryable بيقولك إيه اللي كان المفروض اتعاد\n🔒 ملاحظة Senior: neverError = true في نود الـ Fallback → الـ Handler نفسه عمره ما يوقع بسبب خطأ في الـ Fallback",
+        "height": 220,
+        "width": 500,
+        "color": 6
+      },
+      "id": "sticky-04",
+      "name": "Sticky — Retry Logic",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [400, 280]
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "1. Extract + CONFIG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Extract + CONFIG": {
+      "main": [
+        [
+          {
+            "node": "2. Classify & Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. Classify & Format": {
+      "main": [
+        [
+          {
+            "node": "3. Telegram Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Telegram Alert": {
+      "main": [
+        [
+          {
+            "node": "4. Google Sheets Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4. Google Sheets Log": {
+      "main": [
+        [
+          {
+            "node": "5. Fallback Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5. Fallback Check": {
+      "main": [
+        [
+          {
+            "node": "6a. Fallback Reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "6b. Done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "6a. Fallback Reply": {
+      "main": [
+        [
+          {
+            "node": "6b. Done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Africa/Cairo"
+  },
+  "pinData": {},
+  "active": false
+}
