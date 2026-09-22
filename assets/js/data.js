@@ -93,11 +93,22 @@ window.royaData = {
       ]
     },
     {
+      name: { ar: 'Menna Allah Shady Samir', en: 'Menna Allah Shady Samir' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: 'Guardian',
+      year: 'Senior',
+      achievements: [
+        { ar: 'Innovation Camp', en: 'Innovation Camp' },
+        { ar: 'AI Level 1 – Creativa', en: 'AI Level 1 – Creativa' },
+        { ar: 'Mobile App Development – NTI', en: 'Mobile App Development – NTI' }
+      ]
+    },
+    {
       name: { ar: '', en: 'Yasser Mahmoud' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
       nickname: '🔗 Connector',
       year: 'Freshman',
-      photo: 'assets/58049005-2714-4fa5-a35f-c33115d98e4d.jpg',
+      photo: 'assets/WhatsApp Image 2026-09-22 at 5.35.22 PM.jpeg',
       achievements: [
         { ar: 'عضو جديد داخل الأسرة', en: 'New member of the family' },
         { ar: 'مستعد للمشاركة في الأنشطة والفعاليات', en: 'Ready to participate in activities and events' }
@@ -112,6 +123,51 @@ window.royaData = {
       achievements: [
         { ar: 'عضو جديد داخل الأسرة', en: 'New member of the family' },
         { ar: 'مستعد للمشاركة في الأنشطة والفعاليات', en: 'Ready to participate in activities and events' }
+      ]
+    },
+    {
+      name: { ar: 'Abdelrahman Sabry', en: 'Abdelrahman Sabry' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🛠️ Troubleshooter',
+      year: 'Senior',
+      photo: 'assets/WhatsApp Image 2026-09-22 at 4.14.12 PM.jpeg',
+      achievements: [
+        { ar: 'من أوائل الدفعة', en: 'Among the top students in the cohort' },
+        { ar: 'قام بالتدريب في NTI', en: 'Completed training at NTI' }
+      ]
+    },
+    {
+      name: { ar: 'Khaled Mohamed', en: 'Khaled Mohamed' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '📚 Scholar',
+      year: 'Senior',
+      photo: 'assets/WhatsApp Image 2026-09-22 at 2.42.36 PM.jpeg',
+      achievements: [
+        { ar: 'طالب متميز', en: 'Outstanding student' },
+        { ar: 'قام بالتدريب في NTI و ITI', en: 'Completed training at NTI and ITI' }
+      ]
+    },
+    {
+      name: { ar: 'Wael Mohamed Abdellatif', en: 'Wael Mohamed Abdellatif' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🧩 Codebreaker',
+      year: 'Junior',
+      photo: 'assets/WhatsApp Image 2026-09-22 at 5.47.32 PM.jpeg',
+      achievements: [
+        { ar: 'ECPC – المركز الأول على مستوى الجامعة', en: 'ECPC – Rank 1 at University Level' },
+        { ar: 'مسئول في مجتمع ECPC بجامعة SGU', en: 'Community ECPC Officer at SGU' }
+      ]
+    },
+    {
+      name: { ar: 'Faris Nabil Mokhtar', en: 'Faris Nabil Mokhtar' },
+      role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🧠 Challenger',
+      year: 'Junior',
+      photo: 'assets/WhatsApp Image 2026-09-22 at 6.39.55 PM.jpeg',
+      achievements: [
+        { ar: 'ECPC 2026 – برمجة تنافسية', en: 'ECPC 2026 – Competitive Programming' },
+        { ar: 'تدريب NTI Huawei ETA-HCIA في الذكاء الاصطناعي', en: 'NTI Huawei ETA-HCIA AI Training' },
+        { ar: 'من أفضل 2 في DEPI R4 – اختبار البرمجيات', en: 'TOP 2 DEPI R4 – Software Testing' }
       ]
     },
     { empty: true }
