@@ -165,9 +165,9 @@ window.royaData = {
       year: 'Junior',
       photo: 'assets/WhatsApp Image 2026-09-22 at 6.39.55 PM.jpeg',
       achievements: [
-        { ar: 'ECPC 2026 – برمجة تنافسية', en: 'ECPC 2026 – Competitive Programming' },
-        { ar: 'تدريب NTI Huawei ETA-HCIA في الذكاء الاصطناعي', en: 'NTI Huawei ETA-HCIA AI Training' },
-        { ar: 'من أفضل 2 في DEPI R4 – اختبار البرمجيات', en: 'TOP 2 DEPI R4 – Software Testing' }
+        { ar: 'Top 1 in social research at SGU', en: 'Top 1 in social research at SGU' },
+        { ar: 'Top 2 DEPI R4 - Software Testing', en: 'Top 2 DEPI R4 - Software Testing' },
+        { ar: 'NTI Huawei-ITI Summer Training AI&ML', en: 'NTI Huawei-ITI Summer Training AI&ML' }
       ]
     },
     { empty: true }
