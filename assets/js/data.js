@@ -3,6 +3,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Sabry Mohamed Alaa' },
       role: { ar: 'رئيس الأسرة', en: 'Family President' },
+      nickname: '🧠 Guru',
+      year: 'Senior',
       photo: 'assets/member-sabry.webp',
       achievements: [
         { ar: 'رئيس ومؤسس فعاليات أسرة رؤية', en: 'President & founder of Osra Roya\'s activities' },
@@ -12,6 +14,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Ziad Ashour' },
       role: { ar: 'نائب رئيس الأسرة', en: 'Vice President' },
+      nickname: '🧭 Captain',
+      year: 'Senior',
       photo: 'assets/12880c36-2beb-48a9-b95e-fdb4334a1d19.jpg',
       achievements: [
         { ar: 'يدعم تنظيم فعاليات الأسرة', en: 'Supports the organization of family activities' },
@@ -21,6 +25,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Ahmad Mohamed' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🏆 Ace',
+      year: 'Senior',
       photo: 'assets/7c97903d-3c76-402e-b39a-704344f799a7.jpg',
       achievements: [
         { ar: 'طالب متميز ويظهر من أوائل الكلية', en: 'Outstanding student and one of the top performers in the college' },
@@ -30,6 +36,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Ibrahim ibn Adham' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '👑 Pioneer',
+      year: 'Senior',
       photo: 'assets/WhatsApp Image 2026-09-17 at 2.55.44 PM.jpeg',
       achievements: [
         { ar: 'تدربت في NTI', en: 'Trained at NTI' },
@@ -39,6 +47,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Mohamed Adly' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '⚡ Dynamo',
+      year: 'Senior',
       photo: 'assets/WhatsApp Image 2026-09-17 at 2.55.30 PM.jpeg',
       achievements: [
         { ar: 'تدربت في NTI', en: 'Trained at NTI' },
@@ -49,6 +59,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Esraa Eid Saad' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🚀 Visionary',
+      year: 'Senior',
       photo: 'assets/WhatsApp Image 2026-09-17 at 2.38.21 PM.jpeg',
       achievements: [
         { ar: 'الأولى على الدفعة وحضرت تدريبات في NTI', en: 'Top of the batch and attended NTI training programs' },
@@ -59,6 +71,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Hanin Khalid Mahmoud' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🎯 Strategist',
+      year: 'Senior',
       photo: 'assets/WhatsApp Image 2026-09-17 at 2.38.00 PM.jpeg',
       achievements: [
         { ar: 'التانية على الدفعة وتقوم بالتدريب في ITI', en: 'Second in the cohort and attended ITI training' },
@@ -69,7 +83,9 @@ window.royaData = {
     {
       name: { ar: '', en: 'Hanaa Tarek Elsayed' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
-      photo: '',
+      nickname: '💡 Maverick',
+      year: 'Senior',
+      photo: 'assets/WhatsApp Image 2026-09-22 at 9.07.51 AM.jpeg',
       achievements: [
         { ar: 'Mobile App Development Training – NTI', en: 'Mobile App Development Training – NTI' },
         { ar: 'AI Training at The British University in Egypt (BUE)', en: 'AI Training at The British University in Egypt (BUE)' },
@@ -79,6 +95,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Yasser Mahmoud' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🔗 Connector',
+      year: 'Freshman',
       photo: 'assets/58049005-2714-4fa5-a35f-c33115d98e4d.jpg',
       achievements: [
         { ar: 'عضو جديد داخل الأسرة', en: 'New member of the family' },
@@ -88,6 +106,8 @@ window.royaData = {
     {
       name: { ar: '', en: 'Tharwat Mahmoud' },
       role: { ar: 'عضو في الأسرة', en: 'Family Member' },
+      nickname: '🌟 Rockstar',
+      year: 'Freshman',
       photo: 'assets/0233552c-9d4d-47e6-94e5-d4257ff5106f.jpg',
       achievements: [
         { ar: 'عضو جديد داخل الأسرة', en: 'New member of the family' },

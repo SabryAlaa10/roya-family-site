@@ -99,7 +99,10 @@ function renderMembers() {
         </div>
         <div class="m-body">
           <h4>${member.name.ar || member.name.en}</h4>
-          <div class="m-name-en">${member.name.en}</div>
+          <div class="m-name-en">
+            <span>${member.nickname || member.name.en}</span>
+            ${member.year ? `<span class="m-year-divider">|</span><span class="m-year">${member.year}</span>` : ''}
+          </div>
           <div class="m-sub"><span>${member.role.ar}</span><span class="m-role-en">· ${member.role.en}</span></div>
           <ul class="m-ach">${member.achievements.map((item) => `<li><ar>${item.ar}</ar><en>${item.en}</en></li>`).join('')}</ul>
         </div>`;
